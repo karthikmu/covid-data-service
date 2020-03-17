@@ -1,0 +1,16 @@
+{
+  "name": "corona-data-service",
+  "version": "1.0.0",
+  "description": "Web scraper - corona data ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "karthikmu",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "express": "^4.17.1",
+    "puppeteer": "^2.1.1"
+  }
+}
