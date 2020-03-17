@@ -16,6 +16,16 @@ app.get('/case/all', async (req, res, next) => {
     }
 });
 
+app.get('/case/country', async (req, res, next) => {
+    try {
+        let data = await scraper.scrapeAllCases();
+        res.json(data);
+    }
+    catch(err) {
+        next(err);
+    }
+});
+
 
 let server = app.listen(process.env.PORT || 8080, '0.0.0.0', ()=> {
     let host = server.address().address;
