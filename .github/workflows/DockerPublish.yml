@@ -11,3 +11,14 @@ jobs:
         name: karthikmu/pasas:latest
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - name: Deploy image to webapp
+      uses: azure/webapps-container-deploy@v1
+      with:
+        app-name: 'covid-srv'
+        images: 'karthikmu/pasas:latest'
