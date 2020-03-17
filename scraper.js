@@ -6,7 +6,8 @@ async function scrapeAllCases() {
     let browser;
     try {
         browser = await puppeteer.launch({ headless: true,
-                                           args: ['--no-sandbox']
+                                           args: ['--no-sandbox'],
+                                           executablePath: 'google-chrome-unstable'
                                          });
         const page = await browser.newPage();
         await page.setViewport({ width: 1920, height: 926 });

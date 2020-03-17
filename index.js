@@ -17,5 +17,9 @@ app.get('/case/all', async (req, res, next) => {
 });
 
 
-app.listen(process.env.PORT || 3000, ()=>console.log("listening..."));
+let server = app.listen(process.env.PORT || 8080, '0.0.0.0', ()=> {
+    let host = server.address().address;
+    let port = server.address().port;
+    console.log('app listening at http://%s:%s', host, port);
+});
 
