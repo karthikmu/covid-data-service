@@ -18,7 +18,7 @@ jobs:
        with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-     - uses: azure/webapps-container-deploy@v2
+     - uses: azure/webapps-container-deploy@v1
        with:
         app-name: 'covid-srv'
         images: 'docker.pkg.github.com/karthikmu/covid-data-service/pasas:latest'  
