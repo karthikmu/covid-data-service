@@ -5,7 +5,9 @@ let scrapeUrl = 'https://www.worldometers.info/coronavirus/#countries';
 async function scrapeAllCases() {
     let browser;
     try {
-        browser = await puppeteer.launch({ headless: false });
+        browser = await puppeteer.launch({ headless: true,
+                                           args: ['--no-sandbox']
+                                         });
         const page = await browser.newPage();
         await page.setViewport({ width: 1920, height: 926 });
         await page.setJavaScriptEnabled(false);
