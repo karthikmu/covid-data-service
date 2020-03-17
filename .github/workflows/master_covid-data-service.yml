@@ -13,22 +13,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
+     - name: 'Login via Azure CLI'
+       uses: azure/login@v1
+       with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+     - uses: azure/webapps-container-deploy@v2
+       with:
+        app-name: 'covid-srv'
+        images: 'docker.pkg.github.com/karthikmu/covid-data-service/pasas:latest'  
+        
+         
+#     - uses: actions/checkout@master
 
-    - name: Set up Node.js version
-      uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+#     - name: Set up Node.js version
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: '10.x'
      
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-    - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'covid-data-service'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_760984ea60af42049c77c7965b6b9aff }}
-        package: .
+#     - name: npm install, build, and test
+#       run: |
+#         npm install
+#         npm run build --if-present
+#         npm run test --if-present
+#     - name: 'Deploy to Azure Web App'
+#       uses: azure/webapps-deploy@v2
+#       with:
+#         app-name: 'covid-data-service'
+#         slot-name: 'production'
+#         publish-profile: ${{ secrets.AzureAppService_PublishProfile_760984ea60af42049c77c7965b6b9aff }}
+#         package: .
