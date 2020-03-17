@@ -15,6 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
     - name: Set up Node.js version
       uses: actions/setup-node@v1
       with:
@@ -31,6 +35,11 @@ jobs:
       with:
         app-name: 'covid-data-service'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_760984ea60af42049c77c7965b6b9aff }}
+        # publish-profile: ${{ secrets.AzureAppService_PublishProfile_760984ea60af42049c77c7965b6b9aff }}
         images: 'hugodfkite/ubuntu-16.04-node-puppeteer'
         package: .
+        
+     # Azure logout 
+    - name: logout
+      run: |
+        az logout
