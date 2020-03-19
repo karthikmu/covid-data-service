@@ -13,10 +13,10 @@ async function scrapeAllCases() {
         await page.setViewport({ width: 1920, height: 926 });
         await page.setJavaScriptEnabled(false);
         await page.goto(scrapeUrl);
-        await page.waitForSelector('table#main_table_countries');
+        await page.waitForSelector('table#main_table_countries_today');
 
         const cases = await page.evaluate(() => {
-            const rowNodeList = document.querySelectorAll('#main_table_countries tr');
+            const rowNodeList = document.querySelectorAll('#main_table_countries_today tr');
             const rowArray = Array.from(rowNodeList);
 
             return rowArray.splice(1).map(tr => {
